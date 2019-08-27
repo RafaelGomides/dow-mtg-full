@@ -49,7 +49,6 @@ A SPA que tínhamos que manter possuía uma característica interessante, que er
   
 
 ```json
-
 {
 	user:  {
 		name:  "",
@@ -104,9 +103,9 @@ Para isso pensei em algo como:
 ```
 /src
 | /modules
-| |	/App
-| |	| /components
-| |	| | App.jsx
+| | /App
+| | | /components
+| | | | App.jsx
 | | | /styles
 | | | index.js
 | /User
