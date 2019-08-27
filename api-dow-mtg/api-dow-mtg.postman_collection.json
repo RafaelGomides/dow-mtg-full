@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "52ff0067-c79f-45bb-95d1-cb39eef58b95",
+		"name": "api-dow-mtg",
+		"description": "# node-tyrapi\n\nChamadas utilizadas para a API construida para o webinar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "Listar todos os cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar um novo card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"string\",\n\t\"mana_cost\": {\n\t\t\"red\": 0,\n\t\t\"green\": 0,\n\t\t\"blue\": 0,\n\t\t\"white\": 0,\n\t\t\"black\": 0,\n\t\t\"any\": 0\n\t},\n\t\"type\": \"string\",\n\t\"spells\": [],\n\t\"atkdef\": \"string/string\",\n\t\"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover um card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cards/:card_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								":card_id"
+							],
+							"variable": [
+								{
+									"key": "card_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um card",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"string\",\n\t\"mana_cost\": {\n\t\t\"red\": 0,\n\t\t\"green\": 0,\n\t\t\"blue\": 0,\n\t\t\"white\": 0,\n\t\t\"black\": 0,\n\t\t\"any\": 0\n\t},\n\t\"type\": \"string\",\n\t\"spells\": [],\n\t\"atkdef\": \"string/string\",\n\t\"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/:card_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								":card_id"
+							],
+							"variable": [
+								{
+									"key": "card_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "09f4abf5-1bf3-475f-8f56-28a441142720",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "371ec41e-4734-4006-ad33-aaf37e9eb74c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b28f4771-44a0-4605-a37a-e98d1adb21ed",
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "b0e3ad13-9ac3-472b-adab-afe366283136",
+			"key": "port",
+			"value": ":3030",
+			"type": "string"
+		},
+		{
+			"id": "d0c4fba5-8677-467c-b9dc-682f2b7b741a",
+			"key": "protocol",
+			"value": "http",
+			"type": "string"
+		},
+		{
+			"id": "49c80293-b3be-456d-9ed3-1ac3ce201297",
+			"key": "base_url",
+			"value": "{{protocol}}://{{host}}{{port}}",
+			"type": "string"
+		}
+	]
+}
