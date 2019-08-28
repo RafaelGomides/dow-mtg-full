@@ -5,10 +5,10 @@ class DefaultSystem {
   constructor({
     serverPath = '',
     action = {
-      save: () => {},
-      update: () => {},
-      select: () => {},
-      delete: () => {},
+      save: '',
+      update: '',
+      select: '',
+      delete: '',
     },
   }) {
     this.action = action;

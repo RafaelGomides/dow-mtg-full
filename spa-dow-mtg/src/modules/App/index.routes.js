@@ -4,7 +4,8 @@ import * as Containers from '../index.modules';
 
 const indexRoutes = () => (
   <Switch>
-    <Route path='/' component={Containers.Cards.index.default} />
+    <Route path='/' exact={true} component={Containers.Cards.index.default} />
+    <Route path='/about' component={Containers.About.index.default} />
   </Switch>
 );
 

@@ -11,6 +11,7 @@ class Cards extends React.Component {
     this.state = {
       cardSelected: new ModelCard({}),
       cardList: [],
+      cardIsShowing: '',
     }
   }
 
@@ -40,15 +41,56 @@ class Cards extends React.Component {
   }
 
   renderList() {
-    return 'Isso é uma lista'
+    return (
+      <>
+        <h2>Lista de Cartinhas Coloridas</h2>
+        <table>
+          <thead>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Custo de Mana</th>
+            <th>Descrição</th>
+            <th>Atk / Def</th>
+            <th>Habilidades</th>
+            <th>Tipo</th>
+          </thead>
+          <tbody>
+            { this.state.cardList.map(card => (
+              <tr>
+                <td>{ card._id }</td>
+                <td>{ card.name }</td>
+                <td>{ card.mana_cost }</td>
+                <td>{ card.description }</td>
+                <td>{ card.atkdef }</td>
+                <td>{ card.spells }</td>
+                <td>{ card.type }</td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
+      </>
+    );
+  }
+
+  renderSwitch() {
+    switch (this.state.cardIsShowing) {
+      case 'form':
+        return this.renderForm();
+      case 'list':
+        return this.renderList();
+      default:
+        return '';
+    }
   }
 
   render() {
     return (
       <>
-        <div>Cards</div>
-        { this.renderForm() }
-        { this.renderList() }
+        <h1>Cards</h1>
+        { this.renderSwitch() }
+        <br/>
+        <button onClick={() => this.setState({cardIsShowing: 'list'})}>Mostrar Lista de Cards</button>
+        <button onClick={() => this.setState({cardIsShowing: 'form'})}>Adicionar novo Card</button>
       </>
     );
   }
