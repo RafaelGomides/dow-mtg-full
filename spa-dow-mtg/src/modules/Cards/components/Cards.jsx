@@ -21,6 +21,18 @@ class Cards extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let nextState = { ...prevState };
+    console.log(nextProps)
+    if (JSON.stringify(prevState.cardSelected) !== JSON.stringify(nextProps.card.selected)) {
+      nextState = {
+        cardSelected: { ...nextProps.card.selected },
+      }
+    }
+    if (JSON.stringify(prevState.cardList) !== JSON.stringify(nextProps.card.list)) {
+      nextState = {
+        ...nextState,
+        cardList: [ ...nextProps.card.list ],
+      }
+    }
     return nextState;
   }
 
@@ -36,8 +48,46 @@ class Cards extends React.Component {
     });
   }
 
+  handleChangeMana(key = '', value = null) {
+    this.setState({
+      cardSelected: {
+        ...this.state.cardSelected,
+        mana_cost: {
+          [key]: value,
+        }
+      }
+    });
+  }
+
   renderForm() {
-    return 'Isso é um formulario'
+    return (
+      <>
+        <form>
+          <label>Nome</label>
+          <input value={this.state.cardSelected.name} placeholder='Nome' onChange={(v) => this.handleChange('name', v.target.value)}/>
+          <p />
+          <label>Custo de mana</label>
+          <input value={this.state.cardSelected.mana_cost.red} placeholder='Vermelha' onChange={(v) => this.handleChangeMana('red', v.target.value)}/>
+          <input value={this.state.cardSelected.mana_cost.green} placeholder='Verde' onChange={(v) => this.handleChangeMana('green', v.target.value)}/>
+          <input value={this.state.cardSelected.mana_cost.white} placeholder='Branca' onChange={(v) => this.handleChangeMana('white', v.target.value)}/>
+          <input value={this.state.cardSelected.mana_cost.black} placeholder='Preta' onChange={(v) => this.handleChangeMana('black', v.target.value)}/>
+          <input value={this.state.cardSelected.mana_cost.blue} placeholder='Azul' onChange={(v) => this.handleChangeMana('blue', v.target.value)}/>
+          <input value={this.state.cardSelected.mana_cost.any} placeholder='Qualquer' onChange={(v) => this.handleChangeMana('any', v.target.value)}/>
+          <p />
+          <label>Descrição</label>
+          <input value={this.state.cardSelected.description} placeholder='Descrição' onChange={(v) => this.handleChange('description', v.target.value)}/>
+          <p />
+          <label>Atk / Def</label>
+          <input value={this.state.cardSelected.atkdef} placeholder='Atk / Def' onChange={(v) => this.handleChange('atkdef', v.target.value)}/>
+          <p />
+          <label>Habilidades</label>
+          <input value={this.state.cardSelected.spells} placeholder='Habilidade' onChange={(v) => this.handleChange('spells', v.target.value)}/>
+          <p />
+          <label>Tipo</label>
+          <input value={this.state.cardSelected.type} placeholder='Tipo' onChange={(v) => this.handleChange('type', v.target.value)}/>
+        </form>
+      </>
+    );
   }
 
   renderList() {
