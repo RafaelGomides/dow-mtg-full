@@ -16,10 +16,18 @@ class DefaultSystem {
     this.systemConfiguration = SYS.Config;
   }
 
+  removeConfigs() {
+    let newData = {...this};
+    delete newData.action;
+    delete newData.serverPath;
+    delete newData.systemConfiguration;
+    return newData;
+  }
+
   save() {
     return (dispatch) => {
       axios.post(this.systemConfiguration.FULL_URL + this.serverPath, {
-        ...this,
+        ...this.removeConfigs(),
       }).then(() => dispatch({
         type: `${this.action.save}_SUCCESS`,
         payload: dispatch(this.select()),
@@ -32,7 +40,7 @@ class DefaultSystem {
 
   update() {
     return (dispatch) => {
-      axios.put(`${this.systemConfiguration.FULL_URL + this.serverPath}/${this.id}`, {
+      axios.put(`${this.systemConfiguration.FULL_URL + this.serverPath}/${this._id}`, {
         ...this,
       }).then(() => dispatch({
         type: `${this.action.update}_SUCCESS`,
@@ -60,9 +68,8 @@ class DefaultSystem {
 
   delete() {
     return (dispatch) => {
-      axios.put(`${this.systemConfiguration.FULL_URL + this.serverPath}/${this.id}`, {
+      axios.put(`${this.systemConfiguration.FULL_URL + this.serverPath}/${this._id}`, {
         ...this,
-        isactive: false,
       }).then(() => dispatch({
         type: `${this.action.delete}_SUCCESS`,
         payload: dispatch(this.select()),

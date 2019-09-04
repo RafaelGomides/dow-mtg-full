@@ -11,6 +11,7 @@ const CardsStore = (state = initialState, action) => {
     case `${Action.selectMany}_SUCCESS`: {
       return {
         ...state,
+        list: [ ...action.payload.data ],
       }
     }
     case `${Action.selectMany}_FAIL`: {

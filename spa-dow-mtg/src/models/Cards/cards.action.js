@@ -38,6 +38,7 @@ class Cards extends DefaultSystem {
 
 function SaveCard(card = {}) {
   const newCard = new Cards(card);
+  delete newCard._id;
   return newCard.save();
 }
 
