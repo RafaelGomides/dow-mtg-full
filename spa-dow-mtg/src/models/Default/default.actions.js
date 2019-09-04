@@ -58,6 +58,21 @@ class DefaultSystem {
     };
   }
 
+  selectCard(params = {}) {
+    console.log('params :', params);
+    return (dispatch) => {
+      axios.get(this.systemConfiguration.FULL_URL + this.serverPath, {
+        params,
+      }).then(res => dispatch({
+        type: `${this.action.select}_SUCCESS`,
+        payload: res.data,
+      })).catch(res => dispatch({
+        type: `${this.action.select}_FAIL`,
+        payload: res.error,
+      }));
+    };
+  }
+
   delete() {
     return (dispatch) => {
       axios.put(`${this.systemConfiguration.FULL_URL + this.serverPath}/${this.id}`, {

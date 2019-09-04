@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as Containers from '../index.modules';
+// import Cards from '../../pages/';
+
 
 const indexRoutes = () => (
   <Switch>
