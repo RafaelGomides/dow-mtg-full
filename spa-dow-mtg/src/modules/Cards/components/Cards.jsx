@@ -21,7 +21,6 @@ class Cards extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let nextState = { ...prevState };
-    console.log(nextProps)
     if (JSON.stringify(prevState.cardSelected) !== JSON.stringify(nextProps.card.selected)) {
       nextState = {
         cardSelected: { ...nextProps.card.selected },
