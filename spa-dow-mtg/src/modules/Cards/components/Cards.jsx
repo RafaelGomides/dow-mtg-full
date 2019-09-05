@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Cards as ModelCard, DeleteCard, 
   GetAllCards, SaveCard, SelectCard, 
   UpdateCard } from '../../../models/Cards/cards.action';
+import { Row, Col, Form, FormGroup, Label, Input, Button,
+  CardTitle, CardText, CardHeader, CardFooter, Card, CardBody,
+  Toast, ToastHeader} from 'reactstrap';
 
 class Cards extends React.Component {
   constructor(props) {
@@ -71,49 +74,71 @@ class Cards extends React.Component {
   renderForm() {
     return (
       <>
-        <form>
-          <label>Nome</label>
-          <input value={this.state.cardSelected.name} placeholder='Nome' onChange={(v) => this.handleChange('name', v.target.value)}/>
-          <p />
-          <label>Custo de mana</label>
-          <li>
-            <label>Vermelha</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.red} placeholder='Vermelha' onChange={(v) => this.handleChangeMana('red', v.target.value)}/>
-          </li>
-          <li>
-            <label>Verde</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.green} placeholder='Verde' onChange={(v) => this.handleChangeMana('green', v.target.value)}/>
-          </li>
-          <li>
-            <label>Branca</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.white} placeholder='Branca' onChange={(v) => this.handleChangeMana('white', v.target.value)}/>
-          </li>
-          <li>
-            <label>Preta</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.black} placeholder='Preta' onChange={(v) => this.handleChangeMana('black', v.target.value)}/>
-          </li>
-          <li>
-            <label>Azul</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.blue} placeholder='Azul' onChange={(v) => this.handleChangeMana('blue', v.target.value)}/>
-          </li>
-          <li>
-            <label>Qualquer</label>
-            <input type='number' value={this.state.cardSelected.mana_cost.any} placeholder='Qualquer' onChange={(v) => this.handleChangeMana('any', v.target.value)}/>
-          </li>
-          <p />
-          <label>Descrição</label>
-          <input value={this.state.cardSelected.description} placeholder='Descrição' onChange={(v) => this.handleChange('description', v.target.value)}/>
-          <p />
-          <label>Atk / Def</label>
-          <input value={this.state.cardSelected.atkdef} placeholder='Atk / Def' onChange={(v) => this.handleChange('atkdef', v.target.value)}/>
-          <p />
-          <label>Habilidades</label>
-          <input value={this.state.cardSelected.spells} placeholder='Habilidade' onChange={(v) => this.handleChange('spells', v.target.value)}/>
-          <p />
-          <label>Tipo</label>
-          <input value={this.state.cardSelected.type} placeholder='Tipo' onChange={(v) => this.handleChange('type', v.target.value)}/>
-        </form>
-        <button onClick={() => this.handleSendDataForm()}>Salvar informações</button>
+      <h2>Novo Card</h2>
+        <Form>
+          <FormGroup>
+            <Label>Nome</Label>
+            <Input value={this.state.cardSelected.name} placeholder='Nome' onChange={(v) => this.handleChange('name', v.target.value)}/>
+          </FormGroup>
+          <h3>Custo de mana</h3>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label>Vermelha</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.red} placeholder='Vermelha' onChange={(v) => this.handleChangeMana('red', v.target.value)}/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Verde</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.green} placeholder='Verde' onChange={(v) => this.handleChangeMana('green', v.target.value)}/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Branca</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.white} placeholder='Branca' onChange={(v) => this.handleChangeMana('white', v.target.value)}/>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label>Preta</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.black} placeholder='Preta' onChange={(v) => this.handleChangeMana('black', v.target.value)}/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Azul</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.blue} placeholder='Azul' onChange={(v) => this.handleChangeMana('blue', v.target.value)}/>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Qualquer</Label>
+                <Input type='number' value={this.state.cardSelected.mana_cost.any} placeholder='Qualquer' onChange={(v) => this.handleChangeMana('any', v.target.value)}/>
+              </FormGroup>
+            </Col>
+          </Row>
+          <FormGroup>
+            <Label>Descrição</Label>
+            <Input value={this.state.cardSelected.description} placeholder='Descrição' onChange={(v) => this.handleChange('description', v.target.value)}/>
+          </FormGroup>
+          <FormGroup>
+            <Label>Atk / Def</Label>
+            <Input value={this.state.cardSelected.atkdef} placeholder='Atk / Def' onChange={(v) => this.handleChange('atkdef', v.target.value)}/>
+          </FormGroup>
+          <FormGroup>
+            <Label>Habilidades</Label>
+            <Input value={this.state.cardSelected.spells} placeholder='Habilidade' onChange={(v) => this.handleChange('spells', v.target.value)}/>
+          </FormGroup>
+          <FormGroup>
+            <Label>Tipo</Label>
+            <Input value={this.state.cardSelected.type} placeholder='Tipo' onChange={(v) => this.handleChange('type', v.target.value)}/>
+          </FormGroup>
+          <Button onClick={() => this.handleSendDataForm()}>Salvar informações</Button>
+        </Form>
       </>
     );
   }
@@ -124,59 +149,83 @@ class Cards extends React.Component {
     return (
       <>
         <h2>Lista de Cartinhas Coloridas</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nome</th>
-              <th>Custo de Mana</th>
-              <th>Descrição</th>
-              <th>Atk / Def</th>
-              <th>Habilidades</th>
-              <th>Tipo</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.state.cardList.map((card, index) => (
-              <tr key={`card${index}`}>
-                <td>{ card._id }</td>
-                <td>{ card.name }</td>
-                <td>
-                  <ul>
-                    <li>
-                      <label>Vermelha: </label>
-                      { card.mana_cost.red }
-                    </li>
-                    <li>
-                      <label>Verde: </label>
-                      { card.mana_cost.green }
-                    </li>
-                    <li>
-                      <label>Branca: </label>
-                      { card.mana_cost.white }
-                    </li>
-                    <li>
-                      <label>Preta: </label>
-                      { card.mana_cost.black }
-                    </li>
-                    <li>
-                      <label>Azul: </label>
-                      { card.mana_cost.blue }
-                    </li>
-                    <li>
-                      <label>Qualquer: </label>
-                      { card.mana_cost.any }
-                    </li>
-                  </ul>
-                </td>
-                <td>{ card.description }</td>
-                <td>{ card.atkdef }</td>
-                <td>{ card.spells }</td>
-                <td>{ card.type }</td>
-              </tr>
-            )) }
-          </tbody>
-        </table>
+        { this.state.cardList.map((card, index) => (
+          <Card key={`card${index}`}>
+            <CardHeader><strong>{ card._id }</strong></CardHeader>
+            <CardBody>
+              <Row>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="danger">
+                    { card.mana_cost.red } Vermelha
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="success">
+                    { card.mana_cost.green } Verde
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="light">
+                    { card.mana_cost.white } Branca
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="dark">
+                    { card.mana_cost.black } Preta
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="primary">
+                    { card.mana_cost.blue } Azul
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+                <Col>
+                  <Toast>
+                    <ToastHeader icon="secondary">
+                    { card.mana_cost.any } Qualquer
+                    </ToastHeader>
+                  </Toast>
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col>
+                  <CardTitle>
+                    <h3>
+                      { card.name }
+                    </h3>
+                  </CardTitle>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CardText><i>{ card.type }</i></CardText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CardText>{ card.spells }</CardText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CardText><i>"{ card.description }"</i></CardText>
+                </Col>
+              </Row>
+            </CardBody>
+            <CardFooter>Ataque / Defesa: { card.atkdef }</CardFooter>
+          </Card>
+        )) }
       </>
     );
   }
@@ -197,9 +246,11 @@ class Cards extends React.Component {
       <>
         <h1>Cards</h1>
         { this.renderSwitch() }
-        <br/>
-        <button onClick={() => this.setState({cardIsShowing: 'list'})}>Mostrar Lista de Cards</button>
-        <button onClick={() => this.setState({cardIsShowing: 'form'})}>Adicionar novo Card</button>
+        <hr />
+        <Row>
+          <Button onClick={() => this.setState({cardIsShowing: 'list'})}>Mostrar Lista de Cards</Button>
+          <Button onClick={() => this.setState({cardIsShowing: 'form'})}>Adicionar novo Card</Button>
+        </Row>
       </>
     );
   }
