@@ -47,26 +47,8 @@ function GetAllCards() {
   return newCard.select();
 }
 
-function SelectCard(card = {}) {
-  const newCard = new Cards(card);
-  return newCard.selectCard();
-}
-
-function DeleteCard(card = {}) {
-  const newCard = new Cards(card);
-  return newCard.delete();
-}
-
-function UpdateCard(card = {}) {
-  const newCard = new Cards(card);
-  return newCard.update();
-}
-
 export {
   Cards,
   SaveCard,
   GetAllCards,
-  SelectCard,
-  DeleteCard,
-  UpdateCard,
 };

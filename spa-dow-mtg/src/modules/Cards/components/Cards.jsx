@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Cards as ModelCard, DeleteCard, 
-  GetAllCards, SaveCard, SelectCard, 
-  UpdateCard } from '../../../models/Cards/cards.action';
+import { Cards as ModelCard, GetAllCards, SaveCard,
+} from '../../../models/Cards/cards.action';
 import { Row, Col, Form, FormGroup, Label, Input, Button,
   CardTitle, CardText, CardHeader, CardFooter, Card, CardBody,
   Toast, ToastHeader} from 'reactstrap';
@@ -263,11 +262,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({
-    DeleteCard, 
     GetAllCards, 
-    SaveCard, 
-    SelectCard, 
-    UpdateCard,
+    SaveCard,
   }, dispatch),
 });
 
