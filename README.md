@@ -50,19 +50,19 @@ A SPA que tínhamos que manter possuía uma característica interessante, que er
 
 ```json
 {
-	user:  {
-		name:  "",
-		cpf:  "",
-		endereco:  ""
+	"user":  {
+		"name":  "",
+		"cpf":  "",
+		"endereco":  ""
 	},
-	profile:  {
-		user:  {
-			name:  "",
-			cpf:  "",
-			endereco:  ""
+	"profile":  {
+		"user":  {
+			"name":  "",
+			"cpf":  "",
+			"endereco":  ""
 		},
-		is-admin:  false,
-		modules:  [...]
+		"is-admin":  false,
+		"modules":  []
 	}
 }
 
